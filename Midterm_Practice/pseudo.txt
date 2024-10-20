@@ -1,0 +1,70 @@
+Welcome to the Rock Paper Scissors Game!
+
+Enter player name: Sonic
+
+What is your play Sonic? 
+Enter r, p, or s: P
+Computer plays P
+
+It's a tie!
+
+Thank you for playing!
+
+
+START
+
+DECLARE Int runState = 0
+DECLARE Int compHandInit = 0
+DECLARE String compHand = ""
+DECALRE String userHand = ""
+DECLARE String userName = ""
+
+DISPLAY "Welcome to the Rock Paper Scissors Game!"
+
+DISPLAY "Enter player name: "
+INPUT userName
+
+DISPLAY "What is your play {userName}?"
+DISPLAY: "Enter r, p, or s: "
+INPUT userHand
+
+SET userHand = UPPER(userHand)
+
+IF userHand != "R" || userHand != "P" || userHand != "S"
+- - DISPLAY "Invalid play. Run the program again!"
+- - runState = 1
+
+IF runState == 0
+- - SET compHandInit = rand(0, 3)
+- - SWITCH compHandInit
+- - - - CASE 0
+- - - - - - compHand = "R"
+- - - - CASE 1
+- - - - - - compHand = "P"
+- - - - CASE 2
+- - - - - - compHand = "S"
+- - - - DEFAULT
+- - - - - - DISPLAY "Unrecoverable error. Alert the programmer"
+- - DISPLAY "Computer plays {compHand}"
+
+
+IF runState == 0
+- - IF userHand == compHand
+- - - - DISPALY "It's a tie!"
+- - ELSE IF userHand == "R" && compHand == "P"
+- - - - DISPLAY "Computer wins!"
+- - ELSE IF userHand == "R" && compHand == "S"
+- - - - DISPLAY "{userName} wins!"
+- - ELSE IF userHand == "P" && compHand == "R"
+- - - - DISPLAY "Computer wins!"
+- - ELSE IF userHand == "P" && compHand == "S"
+- - - - DISPLAY "Computer wins!"
+- - ELSE IF userHand == "S" && compHand == "R"
+- - - - DISPLAY "Computer wins!"
+- - ELSE IF userHand == "S" && compHand == "P"
+- - - - DISPLAY "{userName} wins!"
+- - ELSE
+- - - - DISPLAY "Unrecoverable error. Alert the programmer"
+- - DISPLAY "Thank you for playing!"
+
+END

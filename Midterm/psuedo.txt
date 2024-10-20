@@ -1,0 +1,70 @@
+START
+
+DECLARE Global Int FARE_ADULT = 300
+DECLARE Global Int FARE_ELDER = 290
+DECLARE Global Int FARE_CARRY_ON = 10
+DECLARE Global Int FARE_CHECKED_BAG_FIRST = 25
+DECLARE Global Int FARE_CHECKED_BAG_SECOND = 50
+
+DECLARE String passengerName = ""
+DECLARE Int passengerAge = 0
+DECLARE Int numBagsCarryOn = 0
+DECLARE Int numBagsChecked = 0
+DECLARE Int bagPriceProcessing = 0
+DECLARE Int runState = 0
+DECLARE Int fareTotal = 0
+
+// Init user
+DISPLAY "Please enter your name: "
+INPUT userName
+DISPLAY "Hello {passengerName}!"
+
+// Pax age
+DISPLAY "Please enter age of the passenger: "
+INPUT passengerAge
+IF passengerAge < 0 || passengerAge > 100
+- - SET runState = 1
+- - DISPLAY "Age {passengerAge} is invalid! Sorry you cannot fly ComplexAir!"
+
+// Carry-on Bags
+IF runState = 0
+- - How many carry-on bags do you have (0 or 1)? 
+- - INPUT numBagsCarryOn
+- - IF numBagsCarryOn > 1
+- - - - SET runState = 1
+- - - - DISPLAY "You have too many carry-on bags! Sorry you cannot fly ComplexAir!"
+- - ELSE IF numBagsCarryOn < 0
+- - - - SET runState = 1
+- - - - DISPLAY "Number of carry-on bags is invalid! Sorry you cannot fly ComplexAir!"
+
+// Checked Bags
+IF runState = 0
+- - DISPLAY "How many checked bags do you have?"
+- - INPUT numBagsChecked
+- - SET bagPriceProcessing = numBagsChecked
+- - IF numBagsChecked < 0
+- - - - SET runState = 1
+- - - - DISPLAY "Number of checked bags is invalid! Sorry you cannot fly ComplexAir!"
+- - ELSE IF numBagsChecked > 5
+- - - - SET runState = 1
+- - - - DISPLAY "Too many checked bags (5 max)! Sorry you cannot fly ComplexAir!"
+
+// Fare Calculation
+IF runState = 0
+- - IF passengerAge > 2 AND passengerAge < 60
+- - - - SET fareTotal = fareTotal + FARE_ADULT
+- - IF passengerAge >= 60
+- - - - SET fareTotal = fareTotal + FARE_ELDER
+- - 
+- - SET totalFare = totalFare + (numBagsCarryOn * FARE_CARRY_ON)
+- - 
+- - IF numBagsChecked > 1
+- - - - bagPriceProcessing = bagPriceProcessing - 1
+- - - - SET totalFare = totalFare + FARE_CHECKED_BAG_FIRST
+- - - - bagPriceProcessing - 1
+- - - - SET totalFare = totalFare + (bagPriceProcessing * FARE_CHECKED_BAG_SECOND)
+- - 
+- - DISPLAY "Your airfare is: {totalFare}"
+- - DISPLAY "Thank you for flying ComplexAir!"
+
+END
