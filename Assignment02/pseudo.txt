@@ -1,0 +1,59 @@
+Welcome to my Weekly Payroll program!!
+Enter your employee ID number (numbers only): 34567
+Enter number of hours worked (whole numbers): 40
+Enter the hourly rate: 17.5
+Enter the federal withholding rate: 15.0
+
+Your Payroll Summary:
+Total Gross Pay: $700.00
+FICA deductions: $53.55
+Federal Tax Withholding: $105.00
+Total deductions: $158.55
+Net Pay: $541.45
+
+Thank you for using my Weekly Payroll program!!
+
+---------------------
+
+START
+
+DECLARE Int empID
+DECLARE Int numHours
+DECLARE Double wageHours
+DECLARE Double rateWithold
+DECLARE Double payGross
+DECLARE Double payNet
+DECLARE Double deductionFICA
+DECLARE Double deductionFederal
+DECLARE Double deductionTotal
+DECLARE Const Double FICADEDUCT = 7.65
+
+SET setprecision  = 2, fixed
+
+DISPLAY "Welcome to my Weekly Payroll program!!"
+
+DISPLAY "Enter your employee ID number (numbers only): "
+INPUT empID
+DISPLAY "Enter number of hours worked (whole numbers): "
+INPUT numHours
+DISPLAY "Enter the hourly rate: "
+INPUT wageHour
+DISPALY "Enter the federal withholding rate: "
+INPUT rateWithold
+
+SET payGross = numHours * wageHour
+SET deductionFICA = payGross * (FICADEDUCT / 100)
+SET deductionFederal = payGross * (rateWithold / 100)
+SET deductionTotal = deductionFICA + deductionFederal
+SET payNet = payGross - deductionTotal
+
+DISPLAY "Your Payroll Summary:"
+DISPLAY "Total Gross Pay: $" + payGross
+DISPLAY "FICA deductions: $" + deductionFICA
+DISPLAY "Federal Tax Withholding: $" + deductionFederal
+DISPLAY "Total deductions: $" + deductionTotal
+DISPLAY "Net Pay: $" + payNet
+
+DISPLAY "Thank you for using my Weekly Payroll program!!"
+
+END

@@ -1,0 +1,147 @@
+START
+
+DECLARE CONST Int ASSIGNMENT_WEIGHT = 60
+DECLARE CONST Int EXAM_WEIGHT = 20
+
+DECLARE Int Function main()
+- - DECLARE Int numAssignments
+- - DECALRE Double assignmentAvg
+- - DECLARE midtermScorre
+- - DECLARE finalScore
+- - DECLARE gradeAverage
+- - DECLARE String scorePrompt
+- - DECLARE Char finalGRadeLeter
+- - DECLARE Int i
+- - 
+- - SET PRECISSION = 2
+- - 
+- - CALL welcome()
+- - 
+- - DO
+- - - - SET numAssignments = CALL readInt("Enter num of assignments 0 - 10")
+- - - - IF numAssignments < 0 OR numAssignments > 10
+- - - - - - CALL errorCode(0)
+- - WHILE numAssignment < 0 OR numAssignments > 10
+- - 
+- - SET assignmentAvg = CALL assignAverage(numAssignments)
+- - 
+- - DO 
+- - - - CALL readScore(midtermScore, finalScore)
+- - - -
+- - - - IF midtermScore < 0 OR midtermScore > 4
+- - - - - - CALL errorCode(0)
+- - - - IF finalScore < 0 OR finalScore > 4
+- - - - - - CALL errorCode(0)
+- - WHILE finalScore < 0 OR finalScore > 4 OR midtermScore < 0 OR midtermScore > 4
+- - 
+- - SET gradeAverage = CALL calcFinalScore(assignmentAvg, midtermScore, finalScore)
+- - 
+- - SET finalGradeLetter = CALL calcLetterGrade(gradeAverage)
+- - 
+- - DISPLAY "Final numerica score is {gradeAverage}"
+- - DISPLAY "Final grade is {finalGRadeLetter}"
+- - 
+- - DISPLAY "Thank you and goodbye"
+- - 
+- - RETURN 0
+
+
+DECLARE Void Function welcome()
+- - DISPLAY "Welcome to my Final Grade Calculator!"
+- - DISPLAY "Please enter the following information and I will calculate your "
+- - DISPLAY "Final Numerical Grade and Letter Grade for you!"
+- - DISPLAY "The number of assignments must be between 0 and 10."
+- - DISPLAY "All scores entered must be between 0 and 4."
+
+
+DECLARE Void Function errorCode(Int errorNum)
+- - IF errorNum == 0
+- - - - DISPLAY "Invalid data was given"
+- - ELSE
+- - - - DISPLAY "Super error, alert the dummy who wrote that code"
+
+
+DECLARE Void Function consoleClear()
+- - CLEAR CONSOLE
+- - INPUT IGNORE
+
+
+DECLARE Int Function readInt(string prompt)
+- - DECLARE Int userInt
+- - 
+- - DISPLAY "{prompt}"
+- - INPUT userInt
+- - 
+- - CALL consoleClear()
+- - RETURN userInt
+
+
+DECLARE Double Function readScore(string prompt, double& refVar)
+- - DECLARE Int userDouble
+- - 
+- - DISPLAY "{prompt}"
+- - INPUT userDouble
+- - 
+- - CALL consoleClear()
+- - SET refVar = userDouble
+
+
+void getInput(&Double midtermScore, Double& finalExamScore)
+- - CALL readScore("Enter your midterm exam score: ", midtermExamScore)
+- - CALL readScore("Enter your midterm exam score: ", finalExameScore)
+
+DECLARE Double Function assignAverage(int numAssigns)
+- - DECLARE String scorePrompt
+- - DECLARE Double newScore
+- - DECLARE Double totalScore
+- - DECLARE Double calcAverage
+- - DECLARE Int i
+- - 
+- - FOR i = 0 WHILE i < numAssigns, ++i
+- - - - DO
+- - - - - - SET scorePrompt = "Enter score {i + 1}"
+- - - - - - SET newScore = CALL readScore(scorePrompt)
+- - - - - - 
+- - - - - - IF newScore < 0 OR newScore > 4
+- - - - - - - - CALL errorCode(0)
+- - - - - - ELSE
+- - - - - - - - totalScore = totalScore + newScore
+- - - - WHILE newScore < 0 OR newScore > 4
+- - 
+- - SET calcAverage = totalScore / numAssigns
+- - RETURN calcAverage
+
+
+DECLARE Double Function calcFinalScore(Double assignAvg, Double midterm, Double final)
+- - DECLARE Double assignAvgBase100
+- - DECLARE Double midtermBase100
+- - DECALRE finalBase100
+- - DECLARE finalGrade
+- - 
+- - SET assignAvgBase100 = (assignAvg / 4.0) * ASSIGNMENT_WEIGHT
+- - SET midtermBase100 = (midterm / 4.0) * EXAM_WEIGHT
+- - SET finalBase100 = (final / 4.0) * EXAM_WEIGHT
+- - 
+- - SET finalGrade = (assignAvgBase100 + midtermBase100 + finalBase100) / 100
+- - SET finalGrade = finalGrade * 4
+- - 
+- - RETURN finalGrade
+
+
+DECALRE Void Function calcLetterGrade(Double finalScore, Char& letter)
+- - DECLARE Char letterGrade
+- - 
+- - IF finalScore >= 3.3
+- - - - SET letterGrade = 'A'
+- - ELSE IF finalScore < 3.3 AND finalScore >= 2.8
+- - - - SET letterGRade = 'B'
+- - ELSE IF finalScore < 2.8 AND finalScore >= 2.0
+- - - - SET letterGRade = 'C'
+- - ELSE IF finalScore < 2.0 AND finalScore >= 1.2
+- - - - SET letterGRade = 'D'
+- - ELSE
+- - - - SET letterGRade = 'F'
+- - 
+- - SET letter = letterGRade
+
+END
