@@ -1,0 +1,58 @@
+START
+
+DECLARE Const Double COFFEE_TEA = 0.25
+
+DECLARE Double balance = 0.0
+DECLARE Double amountDue
+DECLARE Int userCoin = 0
+DECLARE String userInput = ""
+DECLARE Int quantity = -1
+DECLARE Int runState = -1
+
+DISPLAY "Welcome to my Coffee/Tea Vending Machine!"
+
+// A hot pile of gargbage spaghetti that would
+WHILE runState != 0
+- - DO
+- - - - DISPLAY "Enter coins - 5, 10, or 25 only: "
+- - - - INPUT userCoin
+- - - - SET balance = balance + (userCoin * 0.01)
+- - WHILE userCoin != 0
+
+DISPLAY "Your balance is ${balance}"
+
+IF runState != 1
+- - DISPLAY "Please pick an option ($0.25 each):"
+- - DISPLAY  "	 C/c: Coffee"
+- - DISPLAY  "   T/t: Tea"
+- - DISPLAY  "   Q/q: Quit"
+- - 
+- - WHILE userInput != "c" || userInput != "t"
+- - - - INPUT userInput
+- - - - SET userInput = userInput[0].tolower()
+- - - - IF userInput != "c" || userInput != "t"
+- - - - - - DISPLAY "Invalid Option! Please choose a valid option!"
+- - 
+- - WHILE quantity >= 0
+- - - - DISPLAY "How many would you like?"
+- - - - INPUT userInput
+- - - - // I am allowing 0 as a psuedo cancel option.
+- - - - IF ((int)userInput >= 0) 
+- - - - - - SET quantity = (int)userInput
+- - - - - - SET amountDue = quantity * COFFEE_TEA
+- - - - ELSE
+- - - - - - DISPLAY "Invalid Option!"
+- - 
+- - 
+- - IF amountDue > balance
+- - - - DISPLAY "Your total is ${amountDue}"
+- - - - DISPLAY "Your balance is ${balance}"
+- - - - DISPLAY "Not enough change!! Please add more coins."
+- - - - SET runState = 1
+- - ELSE
+- - - - SET balance = blanace - amountDue
+- - - - DISPLAY "Your total is ${amountDue}"
+- - - - DISPLAY "Your balance is ${balance}"
+- - - - DISPLAY "Thank you for using my Vending Machine Program!"
+
+END

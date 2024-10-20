@@ -1,0 +1,106 @@
+Copy the below section and paste in your Design Document
+I understand that acts of academic dishonesty may be penalized to the full extent 
+allowed by the Portland Community College Student Conduct Code, including receiving 
+a failing grade for this exam. I recognize that I am responsible for understanding 
+the provisions of the PCC Student Conduct Code as they relate to this Course 
+Challenge Exam.
+
+START
+
+DECLARE Function Int Main()
+- - DECLARE Int milesTarget
+- - DECLARE Int milesDay
+- - DECLARE Int milesTotal
+- - DECLARE Int goalDif
+- - DECLARE runState = 0
+- - 
+- - DISPLAY "Welcome to my Miles Tracker program."
+- - 
+- - CALL inputPrompt(0)
+- - DO
+- - - - CALL getInput(milesTarget)
+- - - - CALL validateInput(milesTarget, runState, TRUE)
+- - - - IF runState == 1
+- - - - - - CALL consoleClear()
+- - - - - - CALL errorHandle(0)
+- - WHILE runState != 0
+- - 
+- - IF milesTarget <= 0
+- - - - DISPLAY "No miles were tracked this week."
+- - ELSE
+- - - - milesTotal = CALL calcTotal(milesDay, milesTotal)
+- - 
+- - SET goalDif = milesTarget = milesTotal
+- - 
+- - IF goalDif > 0
+- - - - DISPLAY "Uh oh! You missed your goal by {goalDif} miles!"
+- - ELSE IF goalDif < 0
+- - - - DISPLAY "Great job! You exceeded your goal by {goalDif} miles!"
+- - ELSE
+- - - - DISPLAY "Good job! You met your goal!"
+- - 
+- - DISPLAY "Keep riding!" 
+
+
+DECLARE Function Void inputPrompt(int messageCode)
+- - SWITCH
+- - - - CASE(0)
+- - - - - - DISPLAY "How many miles do you want to ride this week? "
+- - - - CASE(1)
+- - - - - - DISPLAY "How many miles did you ride on Sunday? "
+- - - - CASE(2)
+- - - - - - DISPLAY "How many miles did you ride on Monday? "
+- - - - CASE(3)
+- - - - - - DISPLAY "How many miles did you ride on Tuesday? "
+- - - - CASE(4)
+- - - - - - DISPLAY "How many miles did you ride on Wednesday? "
+- - - - CASE(5)
+- - - - - - DISPLAY "How many miles did you ride on Thursday? "
+- - - - CASE(6)
+- - - - - - DISPLAY "How many miles did you ride on Friday? "
+- - - - CASE(7)
+- - - - - - DISPLAY "How many miles did you ride on Saturday? "
+- - - - DEFAULT
+- - - - - - DISPLAY "Error when calling function inputPrompt with {messageCode}"
+
+
+DECLARE Function Void errorHandle(int errCode)
+- - SWITCH
+- - - - CASE(0)
+- - - - - - DISPLAY "Miles must be 0 or greater!"
+- - - - DEFAULT
+- - - - - - DISPLAY "Error when calling function errorHandle with {errCode]}"
+
+
+DECLARE Function Int calcTotal(int milesDay, int milesTotal)
+- - FOR i = 0; i < 6; ++i - - - - CALL inputPrompt(i + 1)
+- - - - DO
+- - - - - - CALL getInput(milesDay)
+- - - - - - CALL validateInput(milesDay, runState, FALSE)
+- - - - - - IF runState == 1
+- - - - - - - - CALL consoleClear()
+- - - - - - - - CALL errorHandle(0)
+- - - - - - ELSE
+- - - - - - - - milesTotal = milesTotal + milesDay
+- - - - WHILE runState != 0
+
+
+DECLARE Fucntion Void getInput(int &goal)
+- - INPuT goal
+
+
+DECLARE Function Void validateInput(int &userInput, int &runState, bool allowNeg)
+IF allowNeg = FALSE
+- - - - IF userInput < 0
+- - - - - - SET runState = 1
+- - - - ELSE
+- - - - - - SET runState = 0
+ELSE
+- - runState = 0
+
+
+DECLARE Function Void clearConsole():
+- - CLEAR CIN
+- - IGNORE CIN
+
+END
