@@ -1,0 +1,103 @@
+Welcome to the Washington State Ferries Fare Calculator!
+
+Fare Description                                           Ticket $
+--------------------------------------                     --------
+Vehicle Under 14' (less than 168”) & Driver                 $57.90
+Adult (age 19 - 64)                                         $14.95
+Senior (age 65 & over) / Disability                         $7.40
+Youth (age 6 - 18)                                          $5.55
+Bicycle Surcharge (included with Vehicle)                   $4.00
+
+Are you riding a vehicle on the Ferry (Y/N): y
+
+How many adults? 2
+How many seniors? 1
+How many youths? 0
+
+Your total charge is $95.20
+
+If you spend $4.80 more, you are eligible for a free adult ticket for the next trip.
+
+
+
+START
+
+DECLARE GLOBAL Double VEHICLE_168 = 57.90
+DECLARE GLOBAL Double FARE_ADULT = 14.95
+DECLARE GLOBAL Double FARE_SENIOR = 7.40
+DECLARE GLOBAL Double FARE_YOUTH = 5.55
+DECLARE GLOBAL Double FARE_BIKE = 4.00
+
+DECLARE Int numAdults = 0
+DECLARE Int numSeniors = 0
+DECLARE Int numYouths = 0
+DECLARE Int numBikes
+DECLARE Double fareTotal = 0.00
+DECLARE Str usingFerry = "init"
+DECLARE Int errorState = 0
+
+SET maximum decimal output = 2
+
+
+DISPLAY "Welcome to the Washington State Ferries Fare Calculator!"
+
+DISPLAY "Fare Description                                           Ticket $"
+DISPLAY "--------------------------------------                     --------"
+DISPLAY "Vehicle Under 14' (less than 168”) & Driver                 $57.90"
+DISPLAY "Adult (age 19 - 64)                                         $14.95"
+DISPLAY "Senior (age 65 & over) / Disability                         $7.40"
+DISPLAY "Youth (age 6 - 18)                                          $5.55"
+DISPLAY "Bicycle Surcharge (included with Vehicle)                   $4.00"
+
+DISPLAY "Are you riding a vehicle on the Ferry (Y/N): "
+INPUT usingFerry
+
+	
+IF usingFerry != "n" OR needFerry != "N" OR needFerry != "y" OR needFerry != "Y"
+- - SET errorState = 1
+ELSE IF usingFerry = "y" OR usingFerry = "Y"
+- - SET fareTotal = VEHICLE_168
+
+IF errorState != 1
+- - DISPLAY "How many adults? "
+- - INPUT numAdults
+- - IF numAdults < 0
+- - - -  SET errorState = 1
+
+IF errorState != 1
+- - DISPLAY "How many seniors? "
+- - INPUT numSeniors
+- - IF numSeniors < 0
+- - - -  SET errorState = 1
+
+IF errorState != 1
+- - DISPLAY "How many youths? "
+- - INPUT numYouths
+- - IF numYouths < 0
+- - - -  SET errorState = 1
+
+IF errorState != 1
+- - IF usingFeryy == "n" OR usingFerry == "N"
+- - - - DISPLAY "How many Bikes? "
+- - - - INPUT numBikes
+- - - - IF numBikes < 0
+- - - - - -  SET errorState = 1
+
+
+IF errorState == 1
+- -	DISPLAY "Error!! Invalid answer!! Please try again later!!!"
+ELSE IF (numAdults + numSeniors + numBikes) > 21
+- - DISPLAY "Uh oh!! Too many people in your group. Split into 2 groups and try again!"
+ELSE
+- - SET fareTotal = fareTotal + (numAdults * FARE_ADULT)
+- - SET fareTotal = fareTotal + (numSeniors * FARE_SENIOR)
+- - SET fareTotal = fareTotal + (numYouths * FARE_YOUTH)
+- - SET fareTotal = fareTotal + (numBikes * FARE_BIKE)
+- - 
+- - DISPLAY "Your total charge is ${fareTotal}"
+- - DISPLAY "If you spend ${100 - fareTotal} more, you are eligible for a free adult ticket for the next trip."
+
+
+DISPLAY "Thank you for using Washington State Ferries Fare Calculator!""		
+
+END

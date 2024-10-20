@@ -1,0 +1,25 @@
+START
+
+DECLARE Global Double SERVING_SIZE = 12.0
+DECLARE Global Int SERVING_CAL = 160
+
+DECLARE Double numOreos = 0.0
+DECLARE Double numServings = 0.0
+DECLARE Double numCalories = 0.0
+
+SET float_precision = 1
+
+DISPLAY "Welcome to the Oreo Calculator!"
+
+DISPLAY "Enter the number of Oreos eaten: "
+INPUT numOreos
+
+SET numServings = numOreos / SERVING_SIZE
+SET numCalories = numServings * SERVING_CAL
+
+DISPLAY "{numOreas} Oreos equals 2.4 servings!"
+DISPLAY "You consumed {numCalories} calories."
+
+DISPLAY "Keep eating Oreos!"
+
+END

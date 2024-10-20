@@ -1,0 +1,3 @@
+﻿  a06.cpp
+D:\Dropbox\PCC\Summer 2024\CS-161A-31688 - CPP\Assignment06\a06.cpp(56,18): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Assignment06.vcxproj -> D:\Dropbox\PCC\Summer 2024\CS-161A-31688 - CPP\Assignment06\x64\Debug\Assignment06.exe

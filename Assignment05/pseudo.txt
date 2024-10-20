@@ -1,0 +1,50 @@
+START
+
+DECLARE String phrase1 = ""
+DECLARE String phrase2 = ""
+DECLARE String phraseLong = ""
+DECLARE String phraseShort = ""
+DECLARE String mergedPhrase = ""
+DECLARE lenPhraseShort = 0
+DECLARE indexFoundStart = 0
+DECLARE Int runState = 0
+
+
+DISPLAY "Welcome to the Phrases and Subphrases program!"
+
+DISPLAY "Enter Phrase 1: "
+INPUT String phrase1
+DISPLAY "You entered: {phrase1}"
+
+
+DISPLAY "Enter Phrase 2: "
+INPUT String phrase2
+DISPLAY "You entered: {phrase2}"
+
+
+IF phrase1 = phrase 2
+- - DISPLAY "Both phrases match"
+- - SET runState = 1
+ELSE IF lenPhrase1 > lenPhrase2
+- - SET phraseLong = phrase1
+- - SET phraseShort = phrase2
+- - SET lenPhraseShort = phrase2
+ELSE
+- - SET phraseLong = phrase2
+- - SET phraseShort = phrase1
+- - SET lenPhraseShort = phrase1
+
+IF phraseShort NOT IN phraseLong w/ STRING::NPOS
+- - DISPLAY "No match"
+- - runState = 1
+
+
+IF runState != 1
+- - SET indexFoundStart = phraseLong.find(phraseShort)
+- - mergedPhrase = phraseShort + substring(phraseLong + lenPhraseShort)
+- - DISPLAY "{phraseShort} is found in {phraseLong}"
+- - DISPLAY "{mergedPhrase}"
+
+DISPLAY Thank you for using my program!
+
+END

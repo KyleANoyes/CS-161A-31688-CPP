@@ -1,0 +1,45 @@
+START
+
+DECLARE Global Int PIZZA_SERVINGS = 8
+
+DECLARE string newOrder = ""
+DECLARE Int numPeople = 0
+DECLARE Double numSlicesEaten = 0.0
+DECLARE Double numSlicesReq = 0.0
+DECLARE Double unitCost = 0.0
+DECLARE Int numPizza = 0
+DECLARE Double deliveryCost = 0.0
+DECLARE Double pizzaTotalCost = 0.0
+DECLARE Double orderTax = 0.0
+DECLARE Double orderTotal = 0.0
+
+DISPLAY "Welcome to my Pizza Party Statistics program!"
+
+DO
+- - DISPLAY "Enter the number of people, average number of slices per person, and 
+- - the cost of a pizza separated by a space: "
+- - INPUT numPeople
+- - INPUT numSlicesEaten
+- - INPUT unitCost
+- - 
+- - SET numSlicesReq = numPeople * numSlicesEaten
+- - SET numPizza = ceil(numSlicesReq / PIZZA_SERVINGS)
+- - SET pizzaTotalCost = unitCost * numPizza
+- - SET orderTax = pizzaTotalCost * 0.07
+- - SET deliveryCost = (pizzaTotalCost + orderTax) * 0.20
+- - SET orderTotal = pizzaTotalCost + orderTax + deliveryCost
+- - 
+- - DISPLAY "Number of pizzas: {numPizza}"
+- - DISPLAY "Cost of pizzas:  ${pizzaTotalCost}"
+- - DISPLAY "Tax:             ${orderTax}"
+- - DISPLAY "Delivery:        ${deliveryCost}"
+- - DISPLAY "Total Cost:      ${orderTotal}"
+- - 
+- - DISPLAY "Do you want to enter more (y/n): "
+- - INPUT newOrder
+- - SET newOrder = lower(newOrder)
+WHILE newOrder == "y"
+
+DISPLAY "Thank you for using my program!"
+
+END

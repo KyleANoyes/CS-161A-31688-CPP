@@ -1,0 +1,5 @@
+﻿  a05.cpp
+D:\Dropbox\PCC\Summer 2024\CS-161A-31688 - CPP\Assignment05\a05.cpp(55,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Dropbox\PCC\Summer 2024\CS-161A-31688 - CPP\Assignment05\a05.cpp(60,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Dropbox\PCC\Summer 2024\CS-161A-31688 - CPP\Assignment05\a05.cpp(71,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Assignment05.vcxproj -> D:\Dropbox\PCC\Summer 2024\CS-161A-31688 - CPP\Assignment05\x64\Debug\Assignment05.exe
