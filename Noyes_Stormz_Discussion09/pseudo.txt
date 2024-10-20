@@ -1,0 +1,109 @@
+START
+
+
+
+DECLARE FUNCTION void main()
+
+    DECLARE double incomeSSI
+    DECLARE double incomePension
+    DECLARE double incomeRetirement
+    DECLARE double expenseFood
+    DECLARE double expenseInsurance
+    DECLARE double expenseEntertainment
+
+    SET setprecision(2)
+    
+    CALL br(1)
+    CALL printToScrn("Welcome to your income / expense calculator!")
+    CALL br(2)
+
+    CALL getIncome(incomeSSI, incomePension, incomeRetirement)
+    CALL br(1)
+    CALL getExpenses(expenseFood, expenseInsurance, expenseEntertainment)
+
+    CALL br(2)
+    
+    CALL printIncomeValues(incomeSSI, incomePension, incomeRetirement)
+    CALL br(1)
+    CALL printExpenseValues(expenseFood, expenseInsurance, expenseEntertainment)
+
+    CALL br(1)
+
+END FUNCTION
+
+DECLARE FUNCTION void getIncome(double& income1, double& income2, double& income3) 
+
+    SET income1 = getDouble("Please input your social security income this month.")
+
+    SET income2 = getDouble("Please input your pension fund income this month.")
+    
+    SET income3 = getDouble("Please input your retirement income this month.")
+
+END FUNCTION
+
+DECLARE FUNCTION void getExpenses(double& expense1, double& expense2, double& expense3) 
+
+    SET expense1 = getDouble("Please input your monthly rent/mortgage")
+
+    SET expense2 = getDouble("Please input your average medical cost per month")
+
+    SET expense3 = getDouble("Please input combined misc. cost per month")
+
+END FUNCTION 
+
+DECLARE FUNCTION void printIncomeValues(double income1, double income2, double income3)
+
+    DECLARE double totalIncome = income1 + income2 + income3
+
+    CALL printToScrn("Here is your total income", totalIncome)
+
+END FUNCTION
+
+DECLARE FUNCTION void printExpenseValues(double expense1, double expense2, double expense3)
+
+    DECLARE double totalExpense = expense1 + expense2 + expense3
+
+    CALL printToScrn("Here are your total expenses", totalExpense)
+
+END FUNCTION
+
+DECLARE FUNCTION void printToScrn(string prompt)
+    DISPLAY prompt endl
+END FUNCTION
+
+DECLARE FUNCTION void printToScrn(string prompt)
+    DISPLAY prompt endl
+END FUNCTION
+
+
+DECLARE Function Void printToScrn(string prompt, double numberOutput) 
+- - DISPLAY "{prompt}: {numberOutput}"
+END FUNCTION
+
+
+DECLARE Function Double getDouble(string prompt)
+- - DECLARE Double input = 0.0;
+- - DISPLAY "{prompt} >>"
+- - INPUT input
+- - CALL validateInput(input)
+- - RETURN input
+END FUNCTION
+
+
+DECLARE Function Void validatePositive(Double& numberOutput) 
+- - WHILE input < 0
+- - - - SET input = CALL getDouble("Please enter a positive number.")
+END FUNCTION
+
+
+DECLARE Function Void br(int input)
+- - for i = 0; i < input; ++i
+- - - - DISPLAY \n
+END FUNCTION
+
+
+DECLARE Function Void br()
+- - DISPLAY \n
+END FUNCTION
+
+END
